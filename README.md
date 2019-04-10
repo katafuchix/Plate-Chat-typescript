@@ -1,4 +1,4 @@
 # Plate-Chat-typescript
 
-$ cd functions
+$ cd functions  
 $ firebase deploy --only functions
