@@ -8,6 +8,9 @@ import { updateFootprint, createFootprint } from './handlers/footprintNotificati
 
 admin.initializeApp()
 
+process.env.GCLOUD_PROJECT = "p-chat-686ca"
+//process.env.GCLOUD_PROJECT = (req, res) => { res.send(JSON.parse(process.env["FIREBASE_CONFIG"]).projectId); };
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -30,6 +33,15 @@ export const helloWorldts = functions.https.onRequest((request, response) => {
 });
 
 export const hello = functions.https.onRequest((request, response) => {
+  //console.log( JSON.parse(process.env["FIREBASE_CONFIG"]) );
+  //console.log("FIREBASE_CONFIG");
+  //console.log(process.env["FIREBASE_CONFIG"]);
+  //const conf = process.env["FIREBASE_CONFIG"];
+  //console.log(conf["projectId"]);
+  //console.log(process.env["FIREBASE_CONFIG"].projectId);
+  //console.log("process.env.GCLOUD_PROJECT");
+  //console.log(process.env.GCLOUD_PROJECT);
+
   if (request.params[0] !== undefined) {
     const param = request.params[0].slice(1)
     response.status(200).send("Hello " + param)

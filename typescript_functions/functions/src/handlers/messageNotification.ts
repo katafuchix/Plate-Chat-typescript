@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
+//admin.initializeApp();
 
 const pushMessageChat = (fcmToken :any, nickname :any, badge :any) => ({
 	notification: {
@@ -58,6 +59,9 @@ export const newMessage = functions.firestore.document('/chat_room/{chatRoomKey}
 					const user = await admin.firestore().collection('login_user').doc(key).get()
 					const login_user = user.data();
 					if(login_user === undefined) return
+
+					//console.log('GCLOUD_PROJECT');
+					//console.log(process.env.GCLOUD_PROJECT);
 
 					if (login_user.fcmToken && login_user.notification_message === true && key !== sender){
 						const response = await admin.messaging().send(pushMessageChat(login_user.fcmToken, senderNickName, unreadCount))
