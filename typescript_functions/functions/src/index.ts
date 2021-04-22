@@ -6,10 +6,9 @@ import { newMessage } from './handlers/messageNotification'
 import { updateArticleReplyLog, createArticleReplyLog } from './handlers/replyNotification'
 import { updateFootprint, createFootprint } from './handlers/footprintNotification'
 
-//admin.initializeApp()
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp()
 
-//process.env.GCLOUD_PROJECT = "p-chat-686ca"
+process.env.GCLOUD_PROJECT = "p-chat-686ca"
 //process.env.GCLOUD_PROJECT = (req, res) => { res.send(JSON.parse(process.env["FIREBASE_CONFIG"]).projectId); };
 
 // // Start writing Firebase Functions
@@ -151,15 +150,15 @@ export const articletest = functions.https.onRequest((request, response) => {
       )
       response.set("Content-Type", "text/csv")
       response.status(200).send(csv)
-      return ""
+      //return ""
     }).catch((err) => {
       response.status(200).send("エラー発生： " + err)
-      return Promise.resolve()
+      //return Promise.resolve()
     })
 })
 
 
-export const unreadtest = functions.https.onRequest((request, response) => {
+export const unreadtest = functions.https.onRequest( (request, response) => {
   const json2csv = require("json2csv").parse
   const db = admin.firestore()
   const key = 'xth30Bc5rnVebqIVtbG3DPJjFGb2' //'unreadCounts["5rRUi1eM3MguEJ8nvlgLusVbr4r1"]'
@@ -184,10 +183,10 @@ console.log(querySnapshot.size)
       )
       response.set("Content-Type", "text/csv")
       response.status(200).send(csv)
-      return ""
+      //eturn ""
     }).catch((err) => {
       response.status(200).send("エラー発生： " + err)
-      return Promise.resolve()
+      //return ""//Promise.resolve()
     })
 })
 
