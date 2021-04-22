@@ -51,6 +51,23 @@ export const hello = functions.https.onRequest((request, response) => {
 })
 
 
+export const membertest = functions.https.onRequest((request, response) => {
+  const json2csv = require("json2csv").parse
+  const db = admin.firestore()
+  const key = "ES3Q8k8kZwOT9oPJvaqGfi00BBg1"
+  console.log(key);
+  const docRef = db.collection('login_user').doc(key)
+  return docRef.get()
+    .then((doc) => {
+      console.log(doc);
+      const csv = json2csv(doc)
+      response.set("Content-Type", "text/csv")
+      response.status(200).send(csv)
+    }).catch((err) => {
+      response.status(200).send("エラー発生： " + err)
+    })
+})
+
 const getExpireDate = function() {
   const dd = new Date();
   const YYYY = dd.getFullYear() + 5;

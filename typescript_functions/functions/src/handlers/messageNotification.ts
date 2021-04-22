@@ -1,8 +1,7 @@
 import * as functions from 'firebase-functions'
-//import * as admin from 'firebase-admin'
+import * as admin from 'firebase-admin'
 //admin.initializeApp();
 
-/*
 const pushMessageChat = (fcmToken :any, nickname :any, badge :any) => ({
 	notification: {
 		title: '新しいメッセージがあります',
@@ -21,11 +20,8 @@ const pushMessageChat = (fcmToken :any, nickname :any, badge :any) => ({
 	},
 	token: fcmToken,
 })
-*/
-export const newMessage = functions.firestore.document('/chat_room/{chatRoomKey}/messages/{messageId}').onCreate(async (snap, context) => {
-			console.log('new Message ----');
 
-			/*
+export const newMessage = functions.firestore.document('/chat_room/{chatRoomKey}/messages/{messageId}').onCreate(async (snap, context) => {
 			const newValue = snap.data();
 
 			// access a particular field as you would any JS property
@@ -47,6 +43,7 @@ export const newMessage = functions.firestore.document('/chat_room/{chatRoomKey}
 			if(senderUser === undefined) return
 
 			const senderNickName = senderUser.nickname
+			//console.log(senderNickName);
 
 			Object.keys(members).forEach( async (key) => {  // chatRoom参加者
 				if( members[key] === false ) return	// Chat参加者のみに送信
@@ -75,5 +72,4 @@ export const newMessage = functions.firestore.document('/chat_room/{chatRoomKey}
 					console.error('Error getting documents or sending message', err);
 				}
 			})
-			*/
 })
