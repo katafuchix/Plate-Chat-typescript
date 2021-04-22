@@ -6,9 +6,10 @@ import { newMessage } from './handlers/messageNotification'
 import { updateArticleReplyLog, createArticleReplyLog } from './handlers/replyNotification'
 import { updateFootprint, createFootprint } from './handlers/footprintNotification'
 
-admin.initializeApp()
+//admin.initializeApp()
+admin.initializeApp(functions.config().firebase);
 
-process.env.GCLOUD_PROJECT = "p-chat-686ca"
+//process.env.GCLOUD_PROJECT = "p-chat-686ca"
 //process.env.GCLOUD_PROJECT = (req, res) => { res.send(JSON.parse(process.env["FIREBASE_CONFIG"]).projectId); };
 
 // // Start writing Firebase Functions
