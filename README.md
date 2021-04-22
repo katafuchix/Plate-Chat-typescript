@@ -5,6 +5,7 @@ $ yarn install
 
 
 $ npm install -g firebase-tools
+
 $ firebase login
 
 $ cd functions  
